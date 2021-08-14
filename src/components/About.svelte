@@ -1,5 +1,15 @@
 <script>
-    let someText = 'Jr developer without work'
+    let someText = 'Jr developer without work';
+    let count = 0;
+    let styles = { darkMode: false}
+
+    const handleClick = () => {
+        return count += 1
+    }
+    const handleToggle = () => {
+        styles.darkMode = !styles.darkMode;
+        window.document.body.classList.toggle('dark-mode')
+    }
 </script>
 
 <style>
@@ -9,7 +19,11 @@
     }
 </style>
 <div class="About">
-    <p>
-        {someText}
-    </p>
+    {#if !styles.darkMode}
+        <p>{someText}</p>
+    {:else}
+        <p><span>Hello darkness</span></p>
+    {/if}
+    <button on:click="{handleClick}">Click me {count === 0 ? '' : count}</button>
+    <button on:click="{handleToggle}">Darkmode</button>
 </div>
